@@ -3,11 +3,9 @@
 
 use eframe::{egui};
 use eframe::egui::{containers::*, *};
-extern crate mech_program;
 extern crate mech_utilities;
 extern crate mech_core;
 
-use mech_program::*;
 use mech_utilities::*;
 use mech_core::*;
 use mech_syntax::compiler::Compiler;
@@ -140,58 +138,19 @@ pub struct MechApp {
 
 //static LONG_STRING: &'static str = include_str!(concat!(env!("OUT_DIR"), "/hello.rs"));
 
-fn load_mech() -> mech_core::Core {
-  let code = fs::read_to_string(r#"src\bin\notebook.mec"#).unwrap();
-  let mut mech_core = mech_core::Core::new();
-  let mut compiler = Compiler::new(); 
-  match compiler.compile_str(&code) {
-    Ok(blocks) => {
-      mech_core.load_blocks(blocks);
-    }
-    Err(x) => {
-      
-    }
-  }
-  
-  let mut code = r#"
-#time/timer = [|period<s> ticks<u64>|]
-#mech/compiler = [|code<string>| "hi"]
-#io/pointer = [|x<f32> y<f32>| 0 0]"#.to_string();
-
-code += r#"
-#mech/tables = [|name<string>|
-               "time/timer"
-               "io/pointer"
-               "mech/tables"
-               "mech/compiler""#;
-for name in mech_core.table_names() {
-code += &format!("\n{:?}",name);     
-}
-code += "]";
-
-  let mut compiler = Compiler::new();
-  let blocks = compiler.compile_str(&code).unwrap();
-  mech_core.load_blocks(blocks);
-  mech_core.schedule_blocks();
-  mech_core
-}
-
-
 impl MechApp {
-  pub fn new(cc: &eframe::CreationContext<'_>) -> Self {
+  pub fn new(cc: &eframe::CreationContext<'_>, core: mech_core::Core) -> Self {
     //let code = LONG_STRING;
     //let code = include_str!("notebook.mec");
 
-    let mech_core = load_mech();
     let mut shapes = vec![epaint::Shape::Noop; 100000];
 
     Self {
-
       frame: 0,
       ticks: 0.0,
       code: "".to_string(),
       //mech_client,
-      core: mech_core,
+      core,
       maestro_thread: None,
       shapes,
       windows: HashSet::new(),
@@ -793,8 +752,8 @@ impl eframe::App for MechApp {
         _ => (),
       }
       if ui.input().keys_down.contains(&egui::Key::Escape) {
-        let core = load_mech();
-        self.core = core;
+        //let core = load_mech();
+        //self.core = core;
       }
       self.core.process_transaction(&self.changes);
       self.changes.clear();
@@ -806,7 +765,3 @@ impl eframe::App for MechApp {
   }
 
 }
-
-
-
-
