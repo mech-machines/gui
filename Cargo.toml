@@ -2,25 +2,39 @@
 name = "mech-gui"
 version = "0.1.0"
 authors = ["Corey Montella <corey@mech-lang.org>"]
-description = "GUI library for the Mech language"
-documentation = "http://docs.mech-lang.org"
-homepage = "http://mech-lang.org"
-repository = "https://github.com/mech-machines/gui"
-keywords = ["mech", "language", "programming"]
 license = "Apache-2.0"
-readme = "README.md"
-edition = "2018"
+edition = "2021"
+rust-version = "1.56"
+publish = false
+build = "build.rs"
 
-[badges]
-gitlab = { repository = "mech-lang/machines/gui", branch = "main" }
-maintenance = { status = "actively-developed" }
+[package.metadata.docs.rs]
+all-features = true
 
 [lib]
-crate-type = ["dylib", "rlib"]
+crate-type = ["cdylib", "rlib"]
 
 [dependencies]
 mech-core = {git = "https://gitlab.com/mech-lang/core", branch = "v0.1-beta"}
 mech-utilities = {git = "https://gitlab.com/mech-lang/utilities", branch = "v0.1-beta"}
 
-crossbeam-channel = "0.5.1"
 lazy_static = "1.4.0"
+eframe = { version = "0.18.0"}
+image = { version = "0.24.0", default-features = false, features = [
+  "ico",
+  "jpeg",
+  "png",
+] }
+
+tracing-subscriber = "0.3"
+
+[target.'cfg(target_arch = "wasm32")'.dependencies]
+console_error_panic_hook = "0.1.6"
+tracing-wasm = "0.2"
+
+[build-dependencies]
+winres = "0.1.12"
+
+[package.metadata.winres]
+OriginalFilename = "MECH.EXE"
+LegalCopyright = "Copyright © 2022"
