@@ -724,12 +724,16 @@ impl eframe::App for MechApp {
         if let Value::String(code_string) = code_table_brrw.get(&TableIndex::Index(1),&TableIndex::Index(1)).unwrap() {
           if code_string.to_string() != "" {
             let mut compiler = Compiler::new();
-            let blocks = compiler.compile_str(&code_string.to_string()).unwrap();
-            self.core.load_blocks(blocks);
-            self.core.schedule_blocks();    
-            self.changes.push(Change::Set((hash_str("mech/compiler"),vec![
-              (TableIndex::Index(1),TableIndex::Index(1),Value::String(MechString::from_string("".to_string())))
-            ])));
+            match compiler.compile_str(&code_string.to_string()) {
+              Ok(blocks) => {
+                self.core.load_blocks(blocks);
+                self.core.schedule_blocks();    
+                self.changes.push(Change::Set((hash_str("mech/compiler"),vec![
+                  (TableIndex::Index(1),TableIndex::Index(1),Value::String(MechString::from_string("".to_string())))
+                ])));
+              }
+              Err(_) => (), // No blocks compiled
+            }
           }
         }
       }
