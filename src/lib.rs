@@ -113,7 +113,7 @@ lazy_static! {
   static ref MARGIN: u64 = hash_str("margin");
 }
 
-fn load_icon(path: &Path) -> eframe::IconData {
+pub fn load_icon(path: &Path) -> eframe::IconData {
   let (icon_rgba, icon_width, icon_height) = {
       let image = image::open(path)
           .expect("Failed to open icon path")
