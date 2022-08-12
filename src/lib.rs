@@ -3,13 +3,14 @@
 
 use eframe::{egui};
 use eframe::egui::{containers::*, *};
-extern crate mech;
+extern crate mech_program;
+extern crate mech_utilities;
+extern crate mech_core;
 
-use mech::program::*;
-use mech::utilities::*;
-use mech::core::*;
-use mech::core as mech_core;
-use mech::Compiler;
+use mech_program::*;
+use mech_utilities::*;
+use mech_core::*;
+use mech_syntax::compiler::Compiler;
 use std::thread::JoinHandle;
 extern crate image;
 use std::path::Path;
@@ -746,10 +747,10 @@ impl eframe::App for MechApp {
     }
 
     // Set font
-    let mut fonts = FontDefinitions::default();
-    fonts.font_data.insert("FiraCode-Regular".to_owned(),FontData::from_static(include_bytes!("../../../assets/fonts/FiraCode-Regular.ttf")));
-    fonts.families.get_mut(&FontFamily::Proportional).unwrap().insert(0, "FiraCode-Regular".to_owned());
-    ctx.set_fonts(fonts);
+    //let mut fonts = FontDefinitions::default();
+    //fonts.font_data.insert("FiraCode-Regular".to_owned(),FontData::from_static(include_bytes!("../../../assets/fonts/FiraCode-Regular.ttf")));
+    //fonts.families.get_mut(&FontFamily::Proportional).unwrap().insert(0, "FiraCode-Regular".to_owned());
+    //ctx.set_fonts(fonts);
 
     // Draw frame
     let mut frame = Frame::default();
@@ -807,14 +808,5 @@ impl eframe::App for MechApp {
 }
 
 
-fn main() {
-    //let input = std::env::args().nth(1).unwrap();
-    let mut native_options = eframe::NativeOptions::default();
-    let path = concat!(env!("CARGO_MANIFEST_DIR"), "/mech.ico");
-    let icon = load_icon(Path::new(path));
-    native_options.icon_data = Some(icon);
-    native_options.min_window_size = Some(Vec2{x: 1480.0, y: 800.0});
-    eframe::run_native("Mech Notebook", native_options, Box::new(|cc| Box::new(MechApp::new(cc))));
-}
 
 
