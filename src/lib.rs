@@ -125,7 +125,7 @@ fn load_icon(path: &Path) -> eframe::IconData {
   eframe::IconData{rgba: icon_rgba, width: icon_width, height: icon_height}
 }
 
-struct MechApp {
+pub struct MechApp {
   //mech_client: RunLoop,
   ticks: f32,
   frame: usize,
