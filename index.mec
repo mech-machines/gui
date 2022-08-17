@@ -1,0 +1,21 @@
+gui
+====
+
+1. Description
+---------------
+
+2. Provided Tables
+-------------------
+
+3. Examples
+------------
+
+4. Info
+--------
+
+#gui/machine = [
+  name: "gui" 
+  version: "v0.1.0"
+  authors: "Corey Montella" 
+  url: "https://gitlab/com/mech-lang/machines/gui"
+  license: "Apache-2.0"]
