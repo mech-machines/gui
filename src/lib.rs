@@ -725,8 +725,8 @@ impl eframe::App for MechApp {
           if code_string.to_string() != "" {
             let mut compiler = Compiler::new();
             match compiler.compile_str(&code_string.to_string()) {
-              Ok(blocks) => {
-                self.core.load_blocks(blocks);
+              Ok(sections) => {
+                self.core.load_sections(sections);
                 self.core.schedule_blocks();    
                 self.changes.push(Change::Set((hash_str("mech/compiler"),vec![
                   (TableIndex::Index(1),TableIndex::Index(1),Value::String(MechString::from_string("".to_string())))
