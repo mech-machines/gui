@@ -4,8 +4,6 @@ version = "0.1.0"
 authors = ["Corey Montella <corey@mech-lang.org>"]
 license = "Apache-2.0"
 edition = "2021"
-rust-version = "1.56"
-publish = false
 
 [package.metadata.docs.rs]
 all-features = true
@@ -20,17 +18,17 @@ mech-syntax = {git = "https://gitlab.com/mech-lang/syntax", branch = "v0.1-beta"
 
 lazy_static = "1.4.0"
 eframe = { version = "0.18.0"}
-image = { version = "0.24.0", default-features = false, features = [
+image = { version = "0.24.3", default-features = false, features = [
   "ico",
   "jpeg",
   "png",
 ] }
 
-tracing-subscriber = "0.3"
+tracing-subscriber = "0.3.15"
 
 [target.'cfg(target_arch = "wasm32")'.dependencies]
-console_error_panic_hook = "0.1.6"
-tracing-wasm = "0.2"
+console_error_panic_hook = "0.1.7"
+tracing-wasm = "0.2.1"
 
 [build-dependencies]
 winres = "0.1.12"
