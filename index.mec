@@ -17,5 +17,5 @@ gui
   name: "gui" 
   version: "v0.1.0"
   authors: "Corey Montella" 
-  url: "https://gitlab/com/mech-lang/machines/gui"
+  url: "https://gitlab.com/mech-lang/machines/gui"
   license: "Apache-2.0"]
