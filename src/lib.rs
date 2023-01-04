@@ -1,4 +1,5 @@
 #![cfg_attr(not(debug_assertions), windows_subsystem = "windows")]
+#![allow(warnings)]
 #![recursion_limit="256"]
 
 use eframe::{egui};
@@ -170,14 +171,14 @@ impl MechApp {
                 Ok(contents) => {
                   self.render_value(contents, col_ui);
                 }
-                x => {return Err(MechError{id: 6486, kind: MechErrorKind::GenericError(format!("{:?}", x))});},
+                x => {return Err(MechError{msg: "".to_string(), id: 6486, kind: MechErrorKind::GenericError(format!("{:?}", x))});},
               }
             }
           }
           Ok(())
         });
       }
-      x => {return Err(MechError{id: 6487, kind: MechErrorKind::GenericError(format!("{:?}", x))});},
+      x => {return Err(MechError{msg: "".to_string(), id: 6487, kind: MechErrorKind::GenericError(format!("{:?}", x))});},
     }
     Ok(())
   }
@@ -206,7 +207,7 @@ impl MechApp {
         self.make_element(&table.borrow(), ui);  
         //div.append_child(&rendered_ref)?;
       }
-      x => {return Err(MechError{id: 6488, kind: MechErrorKind::GenericError(format!("{:?}", x))});},
+      x => {return Err(MechError{msg: "".to_string(), id: 6488, kind: MechErrorKind::GenericError(format!("{:?}", x))});},
     }
     Ok(())
   }
@@ -234,11 +235,11 @@ impl MechApp {
               else if raw_kind == *LABEL { self.render_label(table,ui)?; }
               //else if raw_kind == *IMAGE { render_iamge(table,ui)?; }
               else {
-                return Err(MechError{id: 6489, kind: MechErrorKind::GenericError(format!("{:?}", raw_kind))});
+                return Err(MechError{msg: "".to_string(), id: 6489, kind: MechErrorKind::GenericError(format!("{:?}", raw_kind))});
               }
             }
-            x => {return Err(MechError{id: 6488, kind: MechErrorKind::GenericError(format!("{:?}", x))});},
-            Err(x) => {return Err(MechError{id: 6488, kind: MechErrorKind::GenericError(format!("{:?}", x))});},
+            x => {return Err(MechError{msg: "".to_string(), id: 6488, kind: MechErrorKind::GenericError(format!("{:?}", x))});},
+            Err(x) => {return Err(MechError{msg: "".to_string(), id: 6488, kind: MechErrorKind::GenericError(format!("{:?}", x))});},
           }
         }
       }
@@ -251,7 +252,7 @@ impl MechApp {
                 Ok(contents) => {
                   self.render_value(contents, col_ui);
                 }
-                x => {return Err(MechError{id: 6496, kind: MechErrorKind::GenericError(format!("{:?}", x))});},
+                x => {return Err(MechError{msg: "".to_string(), id: 6496, kind: MechErrorKind::GenericError(format!("{:?}", x))});},
               }
             }
           }
@@ -278,10 +279,10 @@ impl MechApp {
               self.changes.push(Change::Set((code_table_brrw.id,vec![(TableIndex::Index(1),TableIndex::Index(1),Value::String(MechString::from_string(self.code.clone())))])));
             }
           }
-          x => {return Err(MechError{id: 6496, kind: MechErrorKind::GenericError(format!("{:?}", x))});},
+          x => {return Err(MechError{msg: "".to_string(), id: 6496, kind: MechErrorKind::GenericError(format!("{:?}", x))});},
         }
       }
-      x => {return Err(MechError{id: 6496, kind: MechErrorKind::GenericError(format!("{:?}", x))});},
+      x => {return Err(MechError{msg: "".to_string(), id: 6496, kind: MechErrorKind::GenericError(format!("{:?}", x))});},
     }
     Ok(())
   }
@@ -486,7 +487,7 @@ impl MechApp {
           }
         });
       }
-      x => {return Err(MechError{id: 6496, kind: MechErrorKind::GenericError(format!("{:?}", x))});},
+      x => {return Err(MechError{msg: "".to_string(), id: 6496, kind: MechErrorKind::GenericError(format!("{:?}", x))});},
     }
     Ok(())
   }
@@ -497,7 +498,7 @@ impl MechApp {
       (Ok(Value::String(text)), Ok(Value::String(url))) => {
         container.hyperlink_to(text.to_string(),url.to_string());
       }
-      x => {return Err(MechError{id: 6496, kind: MechErrorKind::GenericError(format!("{:?}", x))});},
+      x => {return Err(MechError{msg: "".to_string(), id: 6496, kind: MechErrorKind::GenericError(format!("{:?}", x))});},
     }
     Ok(())
   }
@@ -522,7 +523,7 @@ impl MechApp {
 
           container.label(label);
         }
-        x => {return Err(MechError{id: 6496, kind: MechErrorKind::GenericError(format!("{:?}", x))});},
+        x => {return Err(MechError{msg: "".to_string(), id: 6496, kind: MechErrorKind::GenericError(format!("{:?}", x))});},
       }
     }
     Ok(())
@@ -546,10 +547,10 @@ impl MechApp {
               self.changes.push(Change::Set((value_table_brrw.id,vec![(TableIndex::Index(1),TableIndex::Index(1),Value::Bool(!value))])));
             }
           }
-          x => {return Err(MechError{id: 6497, kind: MechErrorKind::GenericError(format!("{:?}", x))});},
+          x => {return Err(MechError{msg: "".to_string(), id: 6497, kind: MechErrorKind::GenericError(format!("{:?}", x))});},
         }
       }
-      x => {return Err(MechError{id: 6497, kind: MechErrorKind::GenericError(format!("{:?}", x))});},
+      x => {return Err(MechError{msg: "".to_string(), id: 6497, kind: MechErrorKind::GenericError(format!("{:?}", x))});},
     }
     Ok(())
   }
@@ -567,10 +568,10 @@ impl MechApp {
               self.changes.push(Change::Set((value_table_brrw.id,vec![(TableIndex::Index(1),TableIndex::Index(1),Value::Bool(!value))])));
             }
           }
-          x => {return Err(MechError{id: 6497, kind: MechErrorKind::GenericError(format!("{:?}", x))});},
+          x => {return Err(MechError{msg: "".to_string(), id: 6497, kind: MechErrorKind::GenericError(format!("{:?}", x))});},
         }
       }
-      x => {return Err(MechError{id: 6497, kind: MechErrorKind::GenericError(format!("{:?}", x))});},
+      x => {return Err(MechError{msg: "".to_string(), id: 6497, kind: MechErrorKind::GenericError(format!("{:?}", x))});},
     }
     Ok(())
   }
@@ -590,10 +591,10 @@ impl MechApp {
               self.changes.push(Change::Set((value_table_brrw.id,vec![(TableIndex::Index(1),TableIndex::Index(1),Value::F32(F32::new(self.ticks)))])));
             }
           }
-          x => {return Err(MechError{id: 6497, kind: MechErrorKind::GenericError(format!("{:?}", x))});},
+          x => {return Err(MechError{msg: "".to_string(), id: 6497, kind: MechErrorKind::GenericError(format!("{:?}", x))});},
         }
       }
-      x => {return Err(MechError{id: 6497, kind: MechErrorKind::GenericError(format!("{:?}", x))});},
+      x => {return Err(MechError{msg: "".to_string(), id: 6497, kind: MechErrorKind::GenericError(format!("{:?}", x))});},
     }
     Ok(())
   }  
@@ -622,17 +623,17 @@ impl MechApp {
                 let shapes = self.render_circle(&table_brrw,ui)?;
                 ui.painter().extend(shapes);
               } else {
-                return Err(MechError{id: 6489, kind: MechErrorKind::GenericError(format!("{:?}", raw_kind))});
+                return Err(MechError{msg: "".to_string(), id: 6489, kind: MechErrorKind::GenericError(format!("{:?}", raw_kind))});
               }
             }
             x => {
-              return Err(MechError{id: 6496, kind: MechErrorKind::GenericError(format!("{:?}", x))});
+              return Err(MechError{msg: "".to_string(), id: 6496, kind: MechErrorKind::GenericError(format!("{:?}", x))});
             },
           }
           Ok(())
         });
       }
-      x => {return Err(MechError{id: 6496, kind: MechErrorKind::GenericError(format!("{:?}", x))});},
+      x => {return Err(MechError{msg: "".to_string(), id: 6496, kind: MechErrorKind::GenericError(format!("{:?}", x))});},
     }
     Ok(())
   }
@@ -675,7 +676,7 @@ impl MechApp {
           }));
         }
       }
-      x => {return Err(MechError{id: 6497, kind: MechErrorKind::GenericError(format!("{:?}", x))});},
+      x => {return Err(MechError{msg: "".to_string(), id: 6497, kind: MechErrorKind::GenericError(format!("{:?}", x))});},
     }
     Ok(shapes)
   }
